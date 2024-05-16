@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formatted HTML Document</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
+            width: 80%;
+            margin: auto;
+        }
+        .blinking {
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="color: blue;">Heading 1</h1>
+<h2 style="color: green;">Heading 2</h2>
+<p><strong>Bold Text</strong></p>
+<p><em>Italic Text</em></p>
+<p><u>Underlined Text</u></p>
+<p style="color: red;">Colored Text</p>
+<p style="font-size: 24px;">Font and Font Width</p>
+<p>This is a paragraph.<br>It has line breaks.<br>And another line.</p>
+<hr>
+<p class="blinking">Blinking Text</p>
+<div class="marquee" style="background-color: yellow; color: black;">
+    Marquee Text
+</div>
+
+</body>
+</html>

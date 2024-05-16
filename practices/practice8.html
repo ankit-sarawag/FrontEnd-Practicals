@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        .form-submit {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-submit:hover {
+            background-color: #00408a;
+        }
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Student Registration</h2>
+    <form id="registrationForm">
+        <div class="form-group">
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" name="rollNumber" class="form-control" required>
+            <div class="error" id="rollNumberError"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+            <div class="error" id="nameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" class="form-control" required>
+            <div class="error" id="dobError"></div>
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" class="form-submit" value="Register">
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        validateForm()
+    });
+
+    function validateForm() {
+        // Validate Roll Number
+        const rollNumber = document.getElementById('rollNumber').value;
+        if (!/^\d{7}$/.test(rollNumber)) {
+            document.getElementById('rollNumberError').textContent = 'Roll number must be a 7-digit numeric value.';
+            return false;
+        } else {
+            document.getElementById('rollNumberError').textContent = '';
+        }
+
+        // Validate Name
+        const name = document.getElementById('name').value;
+        if (!/^[A-Za-z ]+$/.test(name)) {
+            document.getElementById('nameError').textContent = 'Name should be alphabetical.';
+            return false;
+        } else {
+            document.getElementById('nameError').textContent = '';
+        }
+
+        // Validate Date of Birth
+        const dob = new Date(document.getElementById('dob').value);
+        const dob1 = document.getElementById('dob').value
+        
+        const today = new Date();
+
+        const cutoffDate = new Date(today.getFullYear() - 3, today.getMonth(), today.getDate());
+        if (!dob || dob > cutoffDate) {
+            document.getElementById('dobError').textContent = 'Student must be at least 3 years old.';
+            return false;
+        } else {
+            document.getElementById('dobError').textContent = '';
+        }
+
+        
+
+        // If all validations pass
+        
+        alert('Registration successful!\n\n' +
+              'Data Entered:\n' +
+              'Name: ' + name + '\n' +
+              'Date of Birth: ' + dob1 + '\n' +
+              'Roll Number: ' + rollNumber);
+        return true;
+    }
+</script>
+
+
+</body>
+</html>
